@@ -52,17 +52,18 @@ jacoco {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
-    implementation "androidx.appcompat:appcompat:$appCompatVersion"
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
-    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    api "io.reactivex.rxjava2:rxjava:2.2.8"
+    kapt annotationProcessors.lifecycle
 
-    testImplementation "org.mockito:mockito-core:2.25.1"
-    testImplementation 'junit:junit:4.12'
-    testImplementation "org.robolectric:robolectric:$robolectricVersion"
+    api libraries.rxAndroid
+    api libraries.rxJava
+
+    implementation libraries.appcompat
+    implementation libraries.kotlin
+    implementation libraries.lifecycleExtensions
+
+    testImplementation testLibraries.junit
+    testImplementation testLibraries.mockito
+    testImplementation testLibraries.roboeletric
 }
 
 task coverage(type: JacocoReport, dependsOn: "testDebugUnitTest") {
